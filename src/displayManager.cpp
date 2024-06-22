@@ -106,8 +106,18 @@ uint16_t DisplayManager::prepareTransferBits(int number, uint8_t frameStep) {
 
     // Remove the tens place if the magnitude of the input number is less than 10.
     if (abs(number) < 10)
-        hundredsPlace = 10;
+        tensPlace = 10;
 
     // return a formatted number string.
     return(numberBits[onesPlace][frameStep] | (numberBits[tensPlace][frameStep] << 6) | (signBits[hundredsPlace][frameStep] << 12));
+}
+
+/// @brief Clears all displays by setting the shift register to all zeros.
+/// @param numberOfDisplays The number of displays to clear from the start of the chain.
+void DisplayManager::clearDisplays(int numberOfDisplays) {
+  for (size_t i = 0; i < numberOfDisplays; i++) {
+    SPI.transfer16(0);
+    digitalWrite(_latchPin, HIGH);
+    digitalWrite(_latchPin, LOW);
+  }
 }
