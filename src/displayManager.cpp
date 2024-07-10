@@ -37,7 +37,7 @@ uint8_t signBits[4][3] {
 /// @param latchPin The latch pin is used to store data in the shift register once it has been sent. (P12, RCLK)
 /// @param clockPin The clock pin is the main clock for the shift register. (P11 SRCLK)
 /// @param dataPin The data pin is the pin that data is sent out along. (P14, SER)
-DisplayManager::DisplayManager(uint8_t latchPin, uint8_t clockPin, uint8_t dataPin) : _latchPin(latchPin), _clockPin(clockPin), _dataPin(dataPin) {}
+DisplayManager::DisplayManager(int8_t latchPin, int8_t clockPin, int8_t dataPin) : _latchPin(latchPin), _clockPin(clockPin), _dataPin(dataPin) {}
 
 /// @brief Initializer. Starts SPI and initializes the latch pin.
 void DisplayManager::begin() {

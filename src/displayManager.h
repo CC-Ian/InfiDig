@@ -3,13 +3,13 @@
 
 class DisplayManager {
 public:
-    DisplayManager(uint8_t larchPin, uint8_t clockPin = -1, uint8_t dataPin = -1);
+    DisplayManager(int8_t larchPin, int8_t clockPin = -1, int8_t dataPin = -1);
     void begin();
     void displayNumbers(int numbers[], int count);
     void clearDisplays(int numberOfDisplays);
 private:
-    uint8_t _latchPin;
-    uint8_t _clockPin;
-    uint8_t _dataPin;
+    int8_t _latchPin;
+    int8_t _clockPin;
+    int8_t _dataPin;
     uint16_t prepareTransferBits(int number, uint8_t frameStep);
 };
