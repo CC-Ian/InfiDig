@@ -45,7 +45,11 @@ void DisplayManager::begin() {
     if (_clockPin == -1 || _dataPin == -1) {
         SPI.begin();
     } else {
-        SPI.begin(_clockPin, -1, _dataPin, -1);
+        #if defined(ESP32) || defined(ESP8266)
+            SPI.begin(_clockPin, -1, _dataPin, -1);
+        #else
+            SPI.begin();
+        #endif
     }
     // Set latch as output active high.
     pinMode(_latchPin, OUTPUT);
